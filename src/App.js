@@ -1,7 +1,17 @@
 import "./App.css";
-import TitleChangler from "./TitleChangler";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [ counter, setCounter ] = useState(1);
+
+  const handleClick = (() => {
+    setCounter((counter) => counter + 1);
+  });
+
+  useEffect(() => {
+      document.title = `Count: (${counter})`;       
+  },[counter]);
+
   return (
     <div className="App">
       <section className="hero">
@@ -12,7 +22,9 @@ function App() {
       </section>
       <div className="container is-fullhd">
         <div className="notification">
-          <TitleChangler />
+          <div>
+              <button onClick={handleClick}>Count ({counter})</button>
+          </div>
         </div>
       </div>
     </div>
